@@ -5,12 +5,12 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "meetup"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{A wrapper for the meetup api}
+    gem.description = %Q{A wrapper for the meetup api}
     gem.email = "kevin.faustino@gmail.com"
     gem.homepage = "http://github.com/kfaustino/meetup"
     gem.authors = ["Kevin Faustino"]
-    gem.add_development_dependency "rspec", ">= 1.2.9"
+    gem.add_development_dependency "rspec", ">= 1.3.0"
     gem.add_development_dependency "yard", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
