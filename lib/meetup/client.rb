@@ -17,6 +17,7 @@ module Meetup
       @connection ||= Faraday::Connection.new(:url => BASE_URI, :params => params, 
         :headers => { :accept =>  'application/json',  :user_agent => 'Meetup Ruby gem'}) do |builder|
         builder.adapter Faraday.default_adapter
+        builder.use Faraday::Response::UTFEncoder
         builder.use Faraday::Response::MultiJson
         builder.use Faraday::Response::Mashify
         builder.use Faraday::Response::Errors
