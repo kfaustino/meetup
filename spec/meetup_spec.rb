@@ -1,7 +1,16 @@
 require 'spec_helper'
 
-describe "Meetup" do
-  it "fails" do
-    fail "hey buddy, you should probably rename this file and start specing for real"
+describe Meetup do
+
+  context "configuration" do
+    
+    it "should set the api_key" do
+      api_key = 'meetup-key'
+      Meetup.configure {|config| config.api_key = api_key }
+      client = Meetup::Client.new
+      client.api_key.should == api_key
+    end
+    
   end
+
 end
