@@ -19,6 +19,7 @@ module Meetup
         builder.adapter Faraday.default_adapter
         builder.use Faraday::Response::MultiJson
         builder.use Faraday::Response::Mashify
+        builder.use Faraday::Response::Errors
       end
     end
 
