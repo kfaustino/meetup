@@ -39,6 +39,11 @@ module Meetup
       @options[:radius] = value.to_s
       self
     end
+    
+    def topic(value)
+      @options[:topic] = value.to_s
+      self
+    end
 
     def fetch(force=false)
       if @results.empty? || force

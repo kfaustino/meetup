@@ -36,9 +36,22 @@ describe Meetup::Group do
     options = {:query => { :member_id => member_id, :key => meetup_api_key }}
     request_uri = meetup_url Meetup::Group::PATH
     stub_request(:get, request_uri).with(options).to_return(:body => fixture_file('groups.json'))
-    
+
     subject.by_member(member_id).fetch
     request(:get, request_uri).with(options).should have_been_made
+  end
+
+  it "should filter by a topic" do
+    topic = 'ruby'
+    stub_request(:get, meetup_url(Meetup::Group::PATH)).with(:query => { :topic => 'ruby',
+                                                                         :key => meetup_api_key
+                                                                         }).to_return(:body => fixture_file('groups_by_topic.json'))
+                                                                         
+    groups = subject.topic(topic).fetch
+    groups.should have_at_least(1).item
+    groups.each do |group| 
+      group.topics.select { |topic| topic.name =~ /ruby/i }.should have_at_least(1).item
+    end
   end
 
 end
