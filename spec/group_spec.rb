@@ -31,4 +31,14 @@ describe Meetup::Group do
     end
   end
 
+  it "should filter by a member" do
+    member_id = '1'
+    options = {:query => { :member_id => member_id, :key => meetup_api_key }}
+    request_uri = meetup_url Meetup::Group::PATH
+    stub_request(:get, request_uri).with(options).to_return(:body => fixture_file('groups.json'))
+    
+    subject.by_member(member_id).fetch
+    request(:get, request_uri).with(options).should have_been_made
+  end
+
 end

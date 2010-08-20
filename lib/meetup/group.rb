@@ -18,6 +18,11 @@ module Meetup
       results && results.length > 0 ? results.first : nil
     end
 
+    def by_member(id)
+      @options[:member_id] = id
+      self
+    end
+
     def geolocation(country, city, state)
       @options[:country] = country
       @options[:city] = city
